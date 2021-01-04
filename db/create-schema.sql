@@ -1,0 +1,20 @@
+CREATE TABLE LIBRARY(
+   libno            INTEGER NOT NULL PRIMARY KEY,
+   name             VARCHAR(20) NOT NULL,
+   sido_nm          VARCHAR(10),
+   gungu_nm         VARCHAR(10),
+   close_day        VARCHAR(20),
+   every_open       VARCHAR(10),
+   every_close      VARCHAR(10),
+   sat_open         VARCHAR(10),
+   sat_close        VARCHAR(10),
+   holiday_open     VARCHAR(10),
+   holiday_close    VARCHAR(10),
+   seats            INTEGER,
+   books            INTEGER,
+   loanable_books   INTEGER,
+   loanable_days    INTEGER,
+   address          VARCHAR(50),
+   phone_number     VARCHAR(20),
+   site             VARCHAR(100)
+);
