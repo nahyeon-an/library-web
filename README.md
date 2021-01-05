@@ -37,10 +37,19 @@
 
 ## 4. 웹 프로젝트 구성
 1. django project 만들기
+```
+django-admin startproject libraries
+```
 2. settings.py
 3. 애플리케이션 생성
-4. ORM 모델 구현 및 데이터베이스로 마이그레이션
-5. admin 을 통한 확인
+```
+python manage.py startapp dashboard
+```
+4. ORM 모델 구현 및 데이터베이스로 마이그레이션 : db.md 를 참조
+5. admin 을 통한 확인 : http://localhost:8000/admin/ 에서 확인 가능
+```
+python manage.py createsuperuser
+```
 
 <br>
 
