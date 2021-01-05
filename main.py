@@ -21,3 +21,11 @@ result = cursor.fetchall()
 
 conn.close()
 print(pd.DataFrame(result))
+print("-"*100)
+
+# 시각장애인을 위한 도서목록 데이터 확인
+df = pd.read_csv("db/books-for-blind.csv", encoding='CP949')
+print(df.shape)
+print(df.iloc[0])
+print(df.info(verbose=True))
+print(df.columns)
