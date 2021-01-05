@@ -28,6 +28,8 @@
 <br>
 
 ## 3. 대시보드 웹 템플릿 검토 및 선정
+[선정한 대시보드 템플릿](https://github.com/puikinsh/kiaalap)
+[참고사이트](https://colorlib.com/wp/free-dashboard-templates/)
 
 <br>
 
