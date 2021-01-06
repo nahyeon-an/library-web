@@ -37,3 +37,32 @@ flush privileges;
 ```
 mysql -u ssacuser -p libweb < create-schema.sql
 ```
+<br>
+
+### 데이터 삽입  
+- insert-data.py
+<br>
+
+### MySQL DB를 Djagno project 와 연결
+- settings.py 에서 DATABASES 부분을 다음과 같이 변경
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'NAME': "libweb",
+        'USER': "ssacuser",
+        'PASSWORD': "ssac123!@#"
+    }
+}
+```
+- 기존 데이터베이스의 내용으로 models.py 를 자동 작성
+```
+python manage.py inspectdb > dashboard/models.py
+```
+- migration
+```
+python manage.py makemigrations
+python manage.py migrate
+```
