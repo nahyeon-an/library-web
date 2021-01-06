@@ -56,6 +56,31 @@ python manage.py createsuperuser
 ## 5. 화면 구조 설계 및 공통 영역 구현
 1. 공통 화면 모듈 구현
 2. 공통 템플릿 구현
-3. 웹사이트 시작 화면 
+3. 웹사이트 시작 화면(현재 상황은 아래와 같으나 기능을 구현하면서 개선)  
+<br>
+
+![PC Web main](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrZ80p%2FbtqSLHgtM0r%2FVVwOplzJyo9mIyBkBqaek0%2Fimg.png)
+
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbd1ffl%2FbtqSIZopPhT%2FwM8cOO8fbmTMqOEMkQ3iy0%2Fimg.png" width="50%" height="50%">
+
+<br>
+
+## 6. 데이터 서비스 기능 구현
+1. 전국 도서관 조회
+2. 지역별 도서관 조회
+3. 대학 도서관
+4. 도서관 이용 통계 dashboard
+
+<br>
+
+## 7. 사용자 인증 시스템 구현
+
+<br>
+
+## 8. 서비스에 대한 코멘트 기능 구현
+
+<br>
+
+## 9. 배포
 
 <br>
