@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}전국도서관 조회{% endblock %}
+
+{% block content %}
+<div class="static-table-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="width:100%">
+                <div class="sparkline8-list">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>도서관 기본 정보</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="static-table-list">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>도서관명</th>
+                                    <th>시도명</th>
+                                    <th>군구명</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra-script %}
+<script>
+    $(function(){
+        $.ajax({
+            "url": "/search/all",
+            "method": "GET",
+            "dataType": "json",
+            "success": function(data, status, xhr){
+                for (let i=0; i<data.length; ++i) {
+                    row = "<tr>";
+                    let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
+                    row += "<td>" + (i+1) + "</td>";
+                    row += "<td><a class='lib-name'"+" href="+url+">" + data[i]['name'] + "</a></td>";
+                    row += "<td>" + data[i]['sido_nm'] + "</td>";
+                    row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
+                    $('.table>tbody').append(row);
+               }
+            }
+        });
+
+        $('.search-btn').on('click', function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            let name = $('.search-int').val();
+
+            $.ajax({
+                "url":"/search/list/"+name,
+                "method": "GET",
+                "dataType": "json",
+                "success": function(data, status, xhr){
+                    $( '.table > tbody').empty();
+                    for (let i=0; i<data.length; ++i) {
+                        row = "<tr>";
+                        let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
+                        row += "<td>" + (i+1) + "</td>";
+                        row += "<td><a class='lib-name'"+" href="+url+">" + data[i]['name'] + "</a></td>";
+                        row += "<td>" + data[i]['sido_nm'] + "</td>";
+                        row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
+                        $('.table>tbody').append(row);
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
