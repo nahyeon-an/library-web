@@ -67,6 +67,19 @@ python manage.py createsuperuser
 
 ## 6. 데이터 서비스 기능 구현
 1. 전국 도서관 조회
+- 도서관명을 클릭하면 상세보기 가능
+
+![전국 도서관 조회](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb0dQzH%2FbtqSWacAq6V%2FYJK3SDjuJiONs5PHFGGwUK%2Fimg.png)
+
+![도서관 검색](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3h0yP%2FbtqS29XMNjY%2FIPe13t9gRlK759woMXMxkK%2Fimg.png)
+
+![선택 도서관 상세보기](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FptZ5J%2FbtqSTJfiAPp%2FKDwlWfUhWqiyZ88s5xU7K0%2Fimg.png)
+
+- 수정할 것
+    * 상세보기 템플릿 수정해야 함 : 아래에 지도 보이게 + 네이버에서 조회한 결과 (이건 api 결과물을 봐야 기능 구현 가능할 듯?)
+    * 현재 날짜와 시간에 따라 운영중인 도서관과 아닌 도서관 상태 표시하기
+    * 전국 도서관 조회에서 테이블에 20개씩 표시하고 페이지 넘김 구현
+
 2. 지역별 도서관 조회
 3. 대학 도서관
 4. 도서관 이용 통계 dashboard
