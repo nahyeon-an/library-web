@@ -24,14 +24,13 @@ class LibraryListView(View):
         sm.close()
         return HttpResponse(result, content_type="application/json")
 
-class DetailView(TemplateView):
-    template_name = 'search/detail.html'
+# class DetailView(TemplateView):
+#     template_name = 'search/detail.html'
 
 class LibraryDetailView(View):
     def get(self, request, name):
         sm = SearchManager('localhost', 'ssacuser', 'ssac123!@#', 'libweb')
         details = sm.getDetailedInfo(name)
-        result = json.dumps(details, ensure_ascii=False)
         sm.close()
         context = {'result' : details}
         return render(request, 'search/detail.html', context)

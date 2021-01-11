@@ -38,7 +38,30 @@ class SearchManager:
                 "address", "phone_number"]
         ret = []
         for i, row in enumerate(result):
-            print(row)
             row_dict = { key:val for key, val in zip(keys, row)}
             ret.append(row_dict)
         return ret
+
+    def getAllData(self, *args):
+        sql = "select "
+        if len(args) == 0:
+            print("missing columns")
+            return
+        for arg in args:
+            sql += "%s, " % arg
+        sql = sql[:-2]
+        sql += " from `library`"
+        print(sql)
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        ret = []
+        for i, row in enumerate(result):
+            row_dict = { key:val for key, val in zip(args, row) }
+            ret.append(row_dict)
+        return ret
+
+if __name__ == '__main__':
+    sm = SearchManager('localhost', 'ssacuser', 'ssac123!@#', 'libweb')
+    result = sm.getAllData("name", "sido_nm", "gungu_nm","address")
+    print(result)
+    sm.close()

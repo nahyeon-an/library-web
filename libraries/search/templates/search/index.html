@@ -8,6 +8,29 @@
 <div class="static-table-area">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <form action="" id="setRows" role="search" class="sr-input-func">
+                                    <div class="row">
+                                        <p>
+                                            페이지당
+                                            <input type="text" name="rows" placeholder="rows per page" value="15"
+                                                class="search-int form-control">
+                                            개의 정보 조회
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" id="tb-area">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="width:100%">
                 <div class="sparkline8-list">
                     <div class="sparkline8-hd">
@@ -19,12 +42,12 @@
                         <div class="static-table-list">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>도서관명</th>
-                                    <th>시도명</th>
-                                    <th>군구명</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>도서관명</th>
+                                        <th>시도명</th>
+                                        <th>군구명</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -40,41 +63,120 @@
 
 {% block extra-script %}
 <script>
-    $(function(){
+    $(function () {
         $.ajax({
             "url": "/search/all",
             "method": "GET",
             "dataType": "json",
-            "success": function(data, status, xhr){
-                for (let i=0; i<data.length; ++i) {
+            "success": function (data, status, xhr) {
+                for (let i = 0; i < data.length; ++i) {
                     row = "<tr>";
                     let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
-                    row += "<td>" + (i+1) + "</td>";
-                    row += "<td><a class='lib-name'"+" href="+url+">" + data[i]['name'] + "</a></td>";
+                    row += "<td>" + (i + 1) + "</td>";
+                    row += "<td><a class='lib-name'" + " href=" + url + ">" + data[i]['name'] + "</a></td>";
                     row += "<td>" + data[i]['sido_nm'] + "</td>";
                     row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
                     $('.table>tbody').append(row);
-               }
+                }
+            },
+            "complete": function (xhr, status) {
+                $('#setRows').submit();
             }
         });
 
-        $('.search-btn').on('click', function(event){
+        let $setRows = $('#setRows');
+        $('#setRows').submit(function (e) {
+            e.preventDefault();
+            let rows = $('[name="rows"]').val() * 1;
+
+            $('#nav').remove();
+            let $tb = $('.table');
+            let $area = $('#tb-area');
+            $area.after('<div id="nav">');
+
+            $('#nav').wrap('<div></div>');
+            $('#nav').parent().addClass("col-lg-6 col-md-6 col-sm-6 col-xs-12").css('width','100%');
+            $('#nav').parent().wrap('<div></div>');
+            $('#nav').parent().parent().addClass("row");
+
+            let $tr = $($tb).find('tbody tr');
+            $tr.removeAttr('style');
+            let totRows = $tr.length; // tr 태그들의 길이
+
+            let totPages = Math.ceil(totRows / rows); // 전체 페이지 수
+            for (let i = 0; i < totPages; i++) {
+                $('<a href="#"></a>') // 페이지 버튼들에 a태그 추가
+                    .attr('rel', i)
+                    .html(i + 1)
+                    .appendTo('#nav');
+                if (i == 0) {
+                    $('#nav a').addClass('active');
+                }
+            }
+            $tr.addClass('off-screen')
+                .slice(0, rows)
+                .removeClass('off-screen');
+
+            let $pagingLink = $('#nav a'); // 페이지 버튼
+            $pagingLink.on('click', function (event) { // 버튼이 눌러지면
+                event.preventDefault();
+
+                let $this = $(this);
+                if ($this.hasClass('active')) {
+                    return;
+                }
+                $pagingLink.removeClass('active');
+                $this.addClass('active'); // 눌러진 페이지 버튼을 active 클래스로
+
+                let curPage = $this.attr('rel');
+                let startItem = curPage * rows;
+                let endItem = startItem + rows;
+
+                $tr.css('opacity', '0.0')
+                    .addClass('off-screen')
+                    .slice(startItem, endItem)
+                    .removeClass('off-screen')
+                    .css('display', '')
+                    .animate({ opacity: 1 }, 300);
+
+                $('.off-screen').css("display", "none");
+                $('#nav').css({ 'width': '100%', 'text-align': 'center' });
+                $('#nav a').css({
+                    'display': 'inline-block', 'padding': '3px 5px',
+                    'margin-right': '10px', 'background':'none', 'color': '#006DF0',
+                    'text-decoration': 'none'
+                });
+                $('#nav a.active').css({ 'background': '#006DF0', 'color': '#fff' });
+            });
+
+            $pagingLink.filter(':first').addClass('active');
+            $('.off-screen').css("display", "none");
+            $('#nav').css({ 'width': '100%', 'text-align': 'center' });
+            $('#nav a').css({
+                'display': 'inline-block', 'padding': '3px 5px',
+                'margin-right': '10px', 'background':'none', 'color': '#006DF0',
+                'text-decoration': 'none'
+            });
+            $('#nav a.active').css({ 'background': '#006DF0', 'color': '#fff' });
+        });
+
+        $('.search-btn').on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
 
             let name = $('.search-int').val();
 
             $.ajax({
-                "url":"/search/list/"+name,
+                "url": "/search/list/" + name,
                 "method": "GET",
                 "dataType": "json",
-                "success": function(data, status, xhr){
-                    $( '.table > tbody').empty();
-                    for (let i=0; i<data.length; ++i) {
+                "success": function (data, status, xhr) {
+                    $('.table > tbody').empty();
+                    for (let i = 0; i < data.length; ++i) {
                         row = "<tr>";
                         let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
-                        row += "<td>" + (i+1) + "</td>";
-                        row += "<td><a class='lib-name'"+" href="+url+">" + data[i]['name'] + "</a></td>";
+                        row += "<td>" + (i + 1) + "</td>";
+                        row += "<td><a class='lib-name'" + " href=" + url + ">" + data[i]['name'] + "</a></td>";
                         row += "<td>" + data[i]['sido_nm'] + "</td>";
                         row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
                         $('.table>tbody').append(row);
