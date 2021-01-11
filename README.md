@@ -78,11 +78,19 @@ python manage.py createsuperuser
 - 수정할 것
     * 상세보기 템플릿 수정해야 함 : 아래에 지도 보이게 + 네이버에서 조회한 결과 (이건 api 결과물을 봐야 기능 구현 가능할 듯?)
     * 현재 날짜와 시간에 따라 운영중인 도서관과 아닌 도서관 상태 표시하기
-    * 전국 도서관 조회에서 테이블에 20개씩 표시하고 페이지 넘김 구현
+    * 나중에 html,css,js를 좀 더 공부하고 테이블 페이징 부분 디자인 수정하기 (기능은 잘 동작함)
+    * 도서관 검색한 결과에서 페이지 버튼 요소 수정
+    
+- 21.01.11 상태
+
+![메인화면 dashboard](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FnvqwJ%2FbtqS9ZPksNh%2FI0miAIj93OnX46SKhevqC1%2Fimg.png)
+
+![도서관 검색 테이블 페이징](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmuFA4%2FbtqS6YXpsgR%2FTd8q8NpJt5IoombqRZbLwK%2Fimg.png)
 
 2. 지역별 도서관 조회
 3. 대학 도서관
 4. 도서관 이용 통계 dashboard
+- 처음 시작 화면부터 dashboard 라서 이와 겹치지 않는 시각 요소를 넣으려면 데이터 및 통계에 대한 고민이 필요함 !
 
 <br>
 
