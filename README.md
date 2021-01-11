@@ -80,6 +80,7 @@ python manage.py createsuperuser
     * 현재 날짜와 시간에 따라 운영중인 도서관과 아닌 도서관 상태 표시하기
     * 나중에 html,css,js를 좀 더 공부하고 테이블 페이징 부분 디자인 수정하기 (기능은 잘 동작함)
     * 도서관 검색한 결과에서 페이지 버튼 요소 수정
+    * base.html 에서 global search element를 지우고, 필요한 template 에서 삽입하여 이용하도록 수정
     
 - 21.01.11 상태
 
