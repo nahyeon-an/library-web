@@ -32,19 +32,20 @@
         </div>
         <div class="row" id="tb-area">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="width:100%">
-                <div class="sparkline8-list">
+                <div class="product-status-wrap sparkline8-list">
                     <div class="sparkline8-hd">
                         <div class="main-sparkline8-hd">
                             <h1>도서관 기본 정보</h1>
                         </div>
                     </div>
                     <div class="sparkline8-graph">
-                        <div class="static-table-list">
+                        <div class="static-table-list asset-inner">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>도서관명</th>
+                                        <th>현재운영상태</th>
                                         <th>시도명</th>
                                         <th>군구명</th>
                                     </tr>
@@ -74,6 +75,12 @@
                     let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
                     row += "<td>" + (i + 1) + "</td>";
                     row += "<td><a class='lib-name'" + " href=" + url + ">" + data[i]['name'] + "</a></td>";
+                    if (data[i]['status'] == 'open') {
+                        row += '<td><button class="pd-setting">' + data[i]['status'] + '</button></td>';
+                    }
+                    else {
+                        row += '<td><button class="ds-setting">' + data[i]['status'] + '</button></td>';
+                    }
                     row += "<td>" + data[i]['sido_nm'] + "</td>";
                     row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
                     $('.table>tbody').append(row);
@@ -95,7 +102,7 @@
             $area.after('<div id="nav">');
 
             $('#nav').wrap('<div></div>');
-            $('#nav').parent().addClass("col-lg-6 col-md-6 col-sm-6 col-xs-12").css('width','100%');
+            $('#nav').parent().addClass("col-lg-6 col-md-6 col-sm-6 col-xs-12").css('width', '100%');
             $('#nav').parent().wrap('<div></div>');
             $('#nav').parent().parent().addClass("row");
 
@@ -143,7 +150,7 @@
                 $('#nav').css({ 'width': '100%', 'text-align': 'center' });
                 $('#nav a').css({
                     'display': 'inline-block', 'padding': '3px 5px',
-                    'margin-right': '10px', 'background':'none', 'color': '#006DF0',
+                    'margin-right': '10px', 'background': 'none', 'color': '#006DF0',
                     'text-decoration': 'none'
                 });
                 $('#nav a.active').css({ 'background': '#006DF0', 'color': '#fff' });
@@ -154,7 +161,7 @@
             $('#nav').css({ 'width': '100%', 'text-align': 'center' });
             $('#nav a').css({
                 'display': 'inline-block', 'padding': '3px 5px',
-                'margin-right': '10px', 'background':'none', 'color': '#006DF0',
+                'margin-right': '10px', 'background': 'none', 'color': '#006DF0',
                 'text-decoration': 'none'
             });
             $('#nav a.active').css({ 'background': '#006DF0', 'color': '#fff' });
@@ -177,10 +184,19 @@
                         let url = "{% url 'search:detail' 1234 %}".replace(/1234/, data[i]['name'].replaceAll(' ', '%20'));
                         row += "<td>" + (i + 1) + "</td>";
                         row += "<td><a class='lib-name'" + " href=" + url + ">" + data[i]['name'] + "</a></td>";
+                        if (data[i]['status'] == 'open') {
+                            row += '<td><button class="pd-setting">' + data[i]['status'] + '</button></td>';
+                        }
+                        else {
+                            row += '<td><button class="ds-setting">' + data[i]['status'] + '</button></td>';
+                        }
                         row += "<td>" + data[i]['sido_nm'] + "</td>";
                         row += "<td>" + data[i]['gungu_nm'] + "</td></tr>";
                         $('.table>tbody').append(row);
                     }
+                },
+                "complete": function (xhr, status) {
+                    $('#setRows').submit();
                 }
             });
         });

@@ -1,7 +1,9 @@
 import json
 import pandas as pd
 from django.http import HttpResponse
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 from dao.searchLibrary import SearchManager
 
 class HomeView(TemplateView):
@@ -50,3 +52,11 @@ class GunDataView(View):
         res = json.dumps(res, ensure_ascii=False)
         sm.close()
         return HttpResponse(res, content_type="application/json")
+
+class UserCreateView(CreateView):
+    template_name = 'registration/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('register_done')
+
+class UserCreateDoneView(TemplateView):
+    template_name = 'registration/register_done.html'
