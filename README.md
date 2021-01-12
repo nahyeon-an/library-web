@@ -88,6 +88,12 @@ python manage.py createsuperuser
 
 ![도서관 검색 테이블 페이징](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmuFA4%2FbtqS6YXpsgR%2FTd8q8NpJt5IoombqRZbLwK%2Fimg.png)
 
+- 21.01.12 상황
+
+![상태표시가 추가된 도서관 목록리스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdeDcDy%2FbtqTp2RtuyR%2FYugHKOzImlQ5HancLWkOKK%2Fimg.png)
+
+![상태표시가 추가된 도서관 목록리스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtsFiD%2FbtqToyiMFD7%2FOWfiKvShJUCrHtN3zeUBdk%2Fimg.png)
+
 2. 지역별 도서관 조회
 3. 대학 도서관
 4. 도서관 이용 통계 dashboard
@@ -96,6 +102,17 @@ python manage.py createsuperuser
 <br>
 
 ## 7. 사용자 인증 시스템 구현
+1. 로그인 : 화면만 구현된 상태, 폼 요청 처리 필요
+
+![account dropdown](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc8THcl%2FbtqTrR9LnrX%2FlSxlKuqOyMCxH9zf4il8o0%2Fimg.png)
+
+![로그인 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FddMg8O%2FbtqTqJxmw1V%2FJ9UsDVcQ9XAdAI4Z38YGvK%2Fimg.png)
+
+2. 회원가입 : 화면만 구현된 상태, 폼 요청 처리 필요
+
+![회원가입 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNrQoq%2FbtqTlFCwalw%2FvdkwoVplu43exIVXMVEkB0%2Fimg.png)
+
+3. 로그아웃
 
 <br>
 
