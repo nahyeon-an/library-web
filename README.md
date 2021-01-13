@@ -56,43 +56,29 @@ python manage.py createsuperuser
 ## 5. 화면 구조 설계 및 공통 영역 구현
 1. 공통 화면 모듈 구현
 2. 공통 템플릿 구현
-3. 웹사이트 시작 화면(현재 상황은 아래와 같으나 기능을 구현하면서 개선)  
-<br>
+3. 웹사이트 시작 화면
+- pie chart 의 경우 왼쪽 도시 차트에서 부분 조각을 클릭하면 해당 도시내의 군/구 차트를 오른쪽에 표시
 
-![PC Web main](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrZ80p%2FbtqSLHgtM0r%2FVVwOplzJyo9mIyBkBqaek0%2Fimg.png)
+![메인보드](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fw8ewb%2FbtqToxd4erp%2F6HQWqEe8tpYlc33zC7232k%2Fimg.png)
 
-<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbd1ffl%2FbtqSIZopPhT%2FwM8cOO8fbmTMqOEMkQ3iy0%2Fimg.png" width="50%" height="50%">
+![메인보드](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtoVPu%2FbtqTvQjbGVE%2Fsr7qxRn6DqNJWEiIYtctZK%2Fimg.png)
 
 <br>
 
 ## 6. 데이터 서비스 기능 구현
 1. 전국 도서관 조회
 - 도서관명을 클릭하면 상세보기 가능
-
-![전국 도서관 조회](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb0dQzH%2FbtqSWacAq6V%2FYJK3SDjuJiONs5PHFGGwUK%2Fimg.png)
-
-![도서관 검색](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3h0yP%2FbtqS29XMNjY%2FIPe13t9gRlK759woMXMxkK%2Fimg.png)
-
-![선택 도서관 상세보기](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FptZ5J%2FbtqSTJfiAPp%2FKDwlWfUhWqiyZ88s5xU7K0%2Fimg.png)
-
 - 수정할 것
     * 상세보기 템플릿 수정해야 함 : 아래에 지도 보이게 + 네이버에서 조회한 결과 (이건 api 결과물을 봐야 기능 구현 가능할 듯?)
-    * 현재 날짜와 시간에 따라 운영중인 도서관과 아닌 도서관 상태 표시하기
     * 나중에 html,css,js를 좀 더 공부하고 테이블 페이징 부분 디자인 수정하기 (기능은 잘 동작함)
-    * 도서관 검색한 결과에서 페이지 버튼 요소 수정
     * base.html 에서 global search element를 지우고, 필요한 template 에서 삽입하여 이용하도록 수정
-    
-- 21.01.11 상태
+- 현재 상황
 
-![메인화면 dashboard](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FnvqwJ%2FbtqS9ZPksNh%2FI0miAIj93OnX46SKhevqC1%2Fimg.png)
+![전국도서관 초기화면](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb309tp%2FbtqTrRQtoyD%2FzYvepjTAC6lKzc7jSDQr71%2Fimg.png)
 
-![도서관 검색 테이블 페이징](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmuFA4%2FbtqS6YXpsgR%2FTd8q8NpJt5IoombqRZbLwK%2Fimg.png)
+![전국도서관 검색결과화면](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FohT9O%2FbtqTkhv6ae3%2FvvIga1um2tKQKRlpLMrjQK%2Fimg.png)
 
-- 21.01.12 상황
-
-![상태표시가 추가된 도서관 목록리스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdeDcDy%2FbtqTp2RtuyR%2FYugHKOzImlQ5HancLWkOKK%2Fimg.png)
-
-![상태표시가 추가된 도서관 목록리스트](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtsFiD%2FbtqToyiMFD7%2FOWfiKvShJUCrHtN3zeUBdk%2Fimg.png)
+![도서관 클릭 후 상세보기](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FptZ5J%2FbtqSTJfiAPp%2FKDwlWfUhWqiyZ88s5xU7K0%2Fimg.png)
 
 2. 지역별 도서관 조회
 3. 대학 도서관
@@ -102,17 +88,24 @@ python manage.py createsuperuser
 <br>
 
 ## 7. 사용자 인증 시스템 구현
-1. 로그인 : 화면만 구현된 상태, 폼 요청 처리 필요
+1. 로그인
+- 로그인되어 있지 않은 상태에서 드롭바에 나타남
+- 자동 로그인 선택가능 (but 세션 타임아웃 형태)
+- 로그인 정보는 session으로 관리하여 모든 페이지에서 프로필에 유저를 표시함
 
-![account dropdown](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc8THcl%2FbtqTrR9LnrX%2FlSxlKuqOyMCxH9zf4il8o0%2Fimg.png)
+![로그인 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBVzvD%2FbtqTvRoPEtD%2F1FKGjfHmHJKGKA9d3HkOXK%2Fimg.png)
 
-![로그인 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FddMg8O%2FbtqTqJxmw1V%2FJ9UsDVcQ9XAdAI4Z38YGvK%2Fimg.png)
+2. 회원가입
+- 로그인되어 있지 않은 상태에서 드롭바에 나타남
+- 회원가입 완료 후 완료 페이지가 나타남
 
-2. 회원가입 : 화면만 구현된 상태, 폼 요청 처리 필요
+![회원가입 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FpC3J5%2FbtqTwXPSC31%2Fk4ehqUyYZfaiGkF1kAOO2K%2Fimg.png)
 
-![회원가입 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNrQoq%2FbtqTlFCwalw%2FvdkwoVplu43exIVXMVEkB0%2Fimg.png)
+![회원가입 성공 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FMvN6r%2FbtqTowl1HFH%2F3DB9hUCxt0dUnsFsN54N7K%2Fimg.png)
 
 3. 로그아웃
+- 로그인된 사용자의 드롭바에서만 나타나는 기능
+- 클릭하면 별도의 메시지 없이 로그아웃되어 User 표시가 나타남
 
 <br>
 
