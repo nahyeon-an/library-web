@@ -36,7 +36,7 @@
                     </div>
                     {% endfor %}
                     <div class="product-buttons">
-                        <button type="button" class="button-default cart-btn">네이버에서 조회</button>
+                        <button type="button" class="button-default cart-btn api-btn">네이버에서 조회</button>
                     </div>
 
                 </div>
@@ -147,4 +147,29 @@
 <script src="/static/js/data-map/datamaps.all.min.js"></script>
 <script src="/static/js/data-map/data-maps-active.js"></script>
 <script src="/static/js/tab.js"></script>
+<script>
+    $(function(){
+        $('.api-btn').on('click', function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            let name = $('.courses-title h2').html();
+
+            $.ajax({
+                "url": "/search/detail/naver/" + name,
+                "method": "GET",
+                "dataType": "json",
+                "success": function(data, status, xhr){
+                    for (let i=0; i < data.length; i++) {
+                        alert(data[i]['title']);
+                        alert(data[i]['description']);
+                    }
+                },
+                "error": function(xhr, status, err){
+                    alert("Cannot search in Naver.");
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

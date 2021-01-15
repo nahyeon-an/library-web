@@ -8,4 +8,5 @@ urlpatterns = [
     path('list/<str:name>', views.LibraryListView.as_view(), name='list'),
     # path('detail/', views.DetailView.as_view(), name='detail_view'),
     path('detail/<str:name>', views.LibraryDetailView.as_view(), name='detail'),
+    path('detail/naver/<str:name>', views.SearchNaverView.as_view(), name='naver'),
 ]

@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic.base import View,TemplateView
 from django.http import HttpResponse
 from dao.searchLibrary import SearchManager
+from dao.requestNaverApi import NaverApi
 
 class IndexView(TemplateView):
     template_name = 'search/index.html'
@@ -88,3 +89,10 @@ class LibraryDetailView(View):
         context = {'result' : details}
         return render(request, 'search/detail.html', context)
         # return HttpResponse(result, content_type="application/json")
+
+class SearchNaverView(View):
+    def get(self, request, name):
+        na = NaverApi()
+        result = na.searchWebKr(name)
+        result = json.dumps(result['items'], ensure_ascii=False)
+        return HttpResponse(result, content_type="application/json")
