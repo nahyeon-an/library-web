@@ -63,7 +63,6 @@ class SearchManager:
             sql += "%s, " % arg
         sql = sql[:-2]
         sql += " from `library`"
-        print(sql)
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         ret = []

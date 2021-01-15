@@ -9,7 +9,8 @@
 {% block simple-explain %}This is the best app ever!{% endblock %}
 
 {% block content %}
-<form action="." id="loginForm" method="post">{% csrf_token %}
+<form action="{% url 'accounts:login_request' %}" id="loginForm" method="post">
+    {% csrf_token %}
     <div class="form-group">
         <label class="control-label" for="username">Username</label>
         <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value=""
@@ -24,11 +25,14 @@
     </div>
     <div class="checkbox login-checkbox">
         <label>
-            <input type="checkbox" class="i-checks"> Remember me </label>
-        <p class="help-block small">(if this is a private computer)</p>
+            <input type="checkbox" class="i-checks" name="auto"> Remember me </label>
+        <span class="help-block small">if you don't check this option, your login connection will expire in 30 minutes.</span>
     </div>
-    <button class="btn btn-success btn-block loginbtn">Login</button>
-    <a class="btn btn-default btn-block" href="{% url 'register' %}">Register</a>
+    <div class="text-center">
+        <span class="help-block small" style="visibility:hidden;">hello</span>
+        <input type="submit" class="btn btn-success btn-block loginbtn" value="Login">
+        <a class="btn btn-default btn-block" href="{% url 'accounts:register' %}">Register</a>
+    </div>
 </form>
 
 {% endblock %}

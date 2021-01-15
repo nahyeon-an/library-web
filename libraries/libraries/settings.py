@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # custom apps
     'dashboard.apps.DashboardConfig',
     'search.apps.SearchConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'libraries.wsgi.application'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

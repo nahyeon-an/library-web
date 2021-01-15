@@ -9,7 +9,8 @@
 
     <title>{% block title %}Dashboard{% endblock %}</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+<!--    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">-->
+    <link rel="shortcut icon" type="image/png" sizes="180x180" href="/static/img/customized/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
@@ -40,7 +41,8 @@
     <nav id="sidebar" class="">
         <div class="sidebar-header">
             <!-- PC Left Top Logo -->
-            <a href="{% url 'home' %}"><img class="main-logo" src="/static/img/logo/anlogo2.png" alt=""/></a>
+            <a href="{% url 'home' %}"><img class="main-logo" src="/static/img/customized/logo.png" alt="logo"
+                                            style="width:200px;"/></a>
         </div>
         <!-- PC web -->
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -136,7 +138,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- 반응형, 모바일 로고 -->
                 <div class="logo-pro">
-                    <a href="{% url 'home' %}"><img class="main-logo" src="/static/img/logo/anlogo2.png" alt=""/></a>
+                    <a href="{% url 'home' %}"><img class="main-logo" src="/static/img/customized/logo.png" alt=""
+                                                    style="width:200px;"/></a>
                 </div>
             </div>
         </div>
@@ -273,22 +276,48 @@
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                                                    class="nav-link dropdown-toggle">
                                                     <img src="/static/img/customized/user.png" alt=""/>
-                                                    <span class="admin-name">User</span>
+                                                    <span class="admin-name">
+                                                        {% if request.session.is_active %}{{ request.session.username }}
+                                                        {% else %}User
+                                                        {% endif %}
+                                                    </span>
                                                     <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                 </a>
                                                 <ul role="menu"
                                                     class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                    {% if request.session.is_active %}
                                                     <li>
-                                                        <a class="non-active" href="{% url 'login' %}">
+                                                        <a class="non-active" href="#">
+                                                            <span class="edu-icon edu-home-admin author-log-ic"></span>
+                                                            Profile (미완성)</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="non-active" href="{% url 'accounts:logout' %}">
+                                                            <span class="edu-icon edu-home-admin author-log-ic"></span>
+                                                            Logout</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="non-active" href="{% url 'accounts:change' %}">
+                                                            <span class="edu-icon edu-home-admin author-log-ic"></span>
+                                                            비밀번호 변경</a>
+                                                    </li>
+                                                    {% else %}
+                                                    <li>
+                                                        <a class="non-active" href="{% url 'accounts:login' %}">
                                                             <span class="edu-icon edu-home-admin author-log-ic"></span>
                                                             Login</a>
                                                     </li>
                                                     <li>
-                                                        <a class="non-active" href="{% url 'register' %}">
+                                                        <a class="non-active" href="{% url 'accounts:register' %}">
                                                             <span class="edu-icon edu-user-rounded author-log-ic"></span>
                                                             Register</a>
                                                     </li>
-                                                    {% block user-area %}{% endblock %}
+                                                    <li>
+                                                        <a class="non-active" href="{% url 'accounts:recover' %}">
+                                                            <span class="edu-icon edu-home-admin author-log-ic"></span>
+                                                            비밀번호 찾기</a>
+                                                    </li>
+                                                    {% endif %}
                                                 </ul>
                                             </li>
                                             <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown"

@@ -46,7 +46,7 @@
                 <div class="sparkline10-list">
                     <div class="sparkline10-hd">
                         <div class="alert-title">
-                            <h2>구역별 도서수 합계 비율 </h2>
+                            <h2 class="gun-pie">구역별 도서수 합계 비율 </h2>
                         </div>
                     </div>
                     <div class="sparkline10-graph">
@@ -396,12 +396,13 @@
 <script src="/static/js/c3-charts/d3.min.js"></script>
 <script src="/static/js/c3-charts/c3.min.js"></script>
 <script src="/static/js/c3-charts/c3-active.js"></script>
-<!-- <script src="/static/js/charts/bar-chart.js"></script> -->
 
 <script>
     "use strict";
 
     $(function () {
+        let w;
+
         $.ajax({
             "url": "/all",
             "method": "GET",
@@ -409,8 +410,6 @@
             "success": function (data, status, xhr) {
                 let label = []
                 let dataset = []
-                // let backColors = []
-                // let borderColors = []
                 for (let i = 0; i < data.length; i++) {
                     label.push(data[i]['sido_nm']);
                     dataset.push(data[i]['count']);
@@ -478,69 +477,103 @@
             "error": function (xhr, status) {
                 alert(status);
             }
-        }); // 그래프에 사용할 데이터 요청
+        });
 
         $.ajax({
             "url": "/si",
             "method": "GET",
             "dataType": "json",
             "success": function (data, status, xhr) {
-                let colorSet = [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)',
-                    'rgba(230, 62, 91, 0.5)',
-                    'rgba(242, 98, 121, 0.5)',
-                    'rgba(75, 37, 109, 0.5)',
-                    'rgba(63, 100, 126, 0.5)',
-                    'rgba(82, 204, 206, 0.5)',
-                    'rgba(140, 212, 122, 0.5)',
-                    'rgba(160, 158, 214, 0.5)',
-                    'rgba(246, 143, 160, 0.5)',
-                    'rgba(210, 105, 30, 0.5)',
-                    'rgba(180, 168, 81, 0.5)',
-                    'rgba(195, 54, 44, 0.5)'
-                ];
-
                 let dataset = [];
-                let colors = {};
                 for (let i = 0; i < data.length; i++) {
                     let col = [];
                     col.push(data[i]['sido_nm']);
                     col.push(data[i]['books_count']);
                     dataset.push(col);
-                    colors[data[i]['sido_nm']] = colorSet[i % colorSet.length];
                 }
+                // w = $('.sparkline10-graph').width();
                 c3.generate({
                     bindto: '#pie1',
                     data: {
                         columns: dataset,
-                        colors: colors,
-                        type: 'pie'
+                        type: 'pie',
+                        onclick: function (d, i) {
+                            drawPie(d["name"]);
+                        }
+                    },
+                    color: {
+                        pattern: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(230, 62, 91, 0.5)',
+                            'rgba(242, 98, 121, 0.5)',
+                            'rgba(75, 37, 109, 0.5)',
+                            'rgba(63, 100, 126, 0.5)',
+                            'rgba(82, 204, 206, 0.5)',
+                            'rgba(140, 212, 122, 0.5)',
+                            'rgba(160, 158, 214, 0.5)',
+                            'rgba(246, 143, 160, 0.5)',
+                            'rgba(210, 105, 30, 0.5)',
+                            'rgba(180, 168, 81, 0.5)',
+                            'rgba(195, 54, 44, 0.5)'
+                        ]
                     }
                 });
             }
         });
 
+        function drawPie(name) {
+            $.ajax({
+                "url": "/gun/" + name,
+                "method": "GET",
+                "dataType": "json",
+                "success": function (data, status, xhr) {
+                    let dataset = [];
+                    for (let i = 0; i < data.length; i++) {
+                        let col = [];
+                        col.push(data[i]["gungu_nm"]);
+                        col.push(data[i]["books_count"]);
+                        dataset.push(col);
+                    }
+                    $('.gun-pie').html(name + " 도서수 합계 비율");
+                    // w = $('.sparkline10-graph').width();
+                    c3.generate({
+                        bindto: '#pie2',
+                        data: {
+                            columns: dataset,
+                            type: 'pie'
+                        },
+                        color: {
+                            pattern: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                                'rgba(75, 192, 192, 0.5)',
+                                'rgba(153, 102, 255, 0.5)',
+                                'rgba(255, 159, 64, 0.5)',
+                                'rgba(230, 62, 91, 0.5)',
+                                'rgba(242, 98, 121, 0.5)',
+                                'rgba(75, 37, 109, 0.5)',
+                                'rgba(63, 100, 126, 0.5)',
+                                'rgba(82, 204, 206, 0.5)',
+                                'rgba(140, 212, 122, 0.5)',
+                                'rgba(160, 158, 214, 0.5)',
+                                'rgba(246, 143, 160, 0.5)',
+                                'rgba(210, 105, 30, 0.5)',
+                                'rgba(180, 168, 81, 0.5)',
+                                'rgba(195, 54, 44, 0.5)'
+                            ]
+                        }
+                    });
+                }
+            });
+        };
 
-
-        c3.generate({
-            bindto: '#pie2',
-            data: {
-                columns: [
-                    ['data1', 30],
-                    ['data2', 120]
-                ],
-                colors: {
-                    data1: 'rgba(255,99,132,0.5)',
-                    data2: 'rgba(54, 162, 235, 0.5)'
-                },
-                type: 'pie'
-            }
-        });
+        drawPie("경기도");
     });
 </script>
 {% endblock %}

@@ -15,20 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.decorators.csrf import csrf_exempt
 from libraries.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/', csrf_exempt(UserCreateView.as_view()), name='register'),
-    path('accounts/register/done/', csrf_exempt(UserCreateDoneView.as_view()), name='register_done'),
     # main dashboard
     path('', HomeView.as_view(), name='home'),
     path('all/', DataView.as_view(), name='all'),
     path('si/', SiDataView.as_view(), name='si'),
-    path('gun/', GunDataView.as_view(), name='gun'),
+    path('gun/<str:name>', GunDataView.as_view(), name='gun'),
     # apps
+    path('accounts/', include('accounts.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('search/', include('search.urls')),
 ]
