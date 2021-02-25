@@ -72,6 +72,7 @@ python manage.py createsuperuser
     * 상세보기 템플릿 수정해야 함 : 아래에 지도 보이게 + 네이버에서 조회한 결과 (이건 api 결과물을 봐야 기능 구현 가능할 듯?)
     * 나중에 html,css,js를 좀 더 공부하고 테이블 페이징 부분 디자인 수정하기 (기능은 잘 동작함)
     * base.html 에서 global search element를 지우고, 필요한 template 에서 삽입하여 이용하도록 수정
+    * 검색이 너무 느린것 같다 - 데이터 조회 속도 개선방법 찾아보기
 - 현재 상황
 
 ![전국도서관 초기화면](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb309tp%2FbtqTrRQtoyD%2FzYvepjTAC6lKzc7jSDQr71%2Fimg.png)
@@ -98,14 +99,15 @@ python manage.py createsuperuser
 2. 회원가입
 - 로그인되어 있지 않은 상태에서 드롭바에 나타남
 - 회원가입 완료 후 완료 페이지가 나타남
+- 예외처리 필요한 부분 : user id 가 데이터베이스에 이미 존재하여 기본키 충돌 발생하는 경우를 처리해야 함  
 
 ![회원가입 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FpC3J5%2FbtqTwXPSC31%2Fk4ehqUyYZfaiGkF1kAOO2K%2Fimg.png)
 
 ![회원가입 성공 페이지](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FMvN6r%2FbtqTowl1HFH%2F3DB9hUCxt0dUnsFsN54N7K%2Fimg.png)
 
 3. 로그아웃
-- 로그인된 사용자의 드롭바에서만 나타나는 기능
-- 클릭하면 별도의 메시지 없이 로그아웃되어 User 표시가 나타남
+- 로그인된 사용자의 드롭바에서만 나타나는 기능  
+- 클릭하면 별도의 메시지 없이 로그아웃되어 User 표시가 나타남  
 
 <br>
 
@@ -114,5 +116,12 @@ python manage.py createsuperuser
 <br>
 
 ## 9. 배포
+1. Python Anywhere   
+- [library web on python anywhere](anagetdone.pythonanywhere.com)  
+- 계정명.pythonanywhere.com 이라는 고정 주소로 접속 가능한 것이 가장 큰 장점
+- mysql 데이터베이스를 사용할 때 호스트 ip, database 이름, user 이름, password 를 모두 수정해야 함에 유의   
+- 시도해볼 것 : docker를 이용한 배포  
+
+2. AWS - EC2  
 
 <br>
