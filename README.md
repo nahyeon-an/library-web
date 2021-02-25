@@ -117,7 +117,7 @@ python manage.py createsuperuser
 
 ## 9. 배포
 1. Python Anywhere   
-- [library web on python anywhere](anagetdone.pythonanywhere.com)  
+- [library web on python anywhere](http://anagetdone.pythonanywhere.com/)  
 - 계정명.pythonanywhere.com 이라는 고정 주소로 접속 가능한 것이 가장 큰 장점
 - mysql 데이터베이스를 사용할 때 호스트 ip, database 이름, user 이름, password 를 모두 수정해야 함에 유의   
 - 시도해볼 것 : docker를 이용한 배포  
