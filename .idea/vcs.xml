@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/front-end-test/kiaalap" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libraries/django-rest-framework" vcs="Git" />
   </component>
 </project>
