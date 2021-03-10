@@ -115,7 +115,31 @@ python manage.py createsuperuser
 
 <br>
 
-## 9. 배포
+## 9. REST API 구현  
+(아직 클라우드에 배포하지 않음)  
+
+1. GET  
+- libraries : 모든 도서관 리스트 데이터 조회  
+- libraries/\<si> : 해당 시의 도서관 리스트 조회  
+- 구현하고 싶은 것 : 도서관 명으로 조회 시 현재 날짜와 도서관의 오픈/클로즈 여부를 반환  
+
+```
+curl -H 'Accept: application/json; indent=4' http://127.0.0.1:8000/libraries/강원도
+```
+
+![호출1](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdjAiL5%2FbtqZSu76A5d%2F1ocF1sO4kbTu2kC1iaBmQk%2Fimg.png)
+
+```
+curl -H GET http://127.0.0.1:8000/libraries/서울특별시
+```
+
+![호출2](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fd3W3MF%2FbtqZRsvVtw7%2FkbqopdgGG1U4kHd44Qrv50%2Fimg.png)
+
+2. POST, PUT, DELETE 에 대해서 어떤 데이터를 수정가능하게 할 지 고려해봐야 함  
+
+<br>
+
+## 10. 배포
 1. Python Anywhere   
 - [library web on python anywhere](http://anagetdone.pythonanywhere.com/)  
 - 계정명.pythonanywhere.com 이라는 고정 주소로 접속 가능한 것이 가장 큰 장점
